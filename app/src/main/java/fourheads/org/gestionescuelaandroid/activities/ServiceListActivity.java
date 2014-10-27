@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import fourheads.org.gestionescuelaandroid.R;
+import fourheads.org.gestionescuelaandroid.dom.IsisService;
+import fourheads.org.gestionescuelaandroid.services.JSONService;
 
 public class ServiceListActivity extends Activity {
 
@@ -32,15 +34,21 @@ public class ServiceListActivity extends Activity {
         String user =  intent.getStringExtra("user");
         String pass =  intent.getStringExtra("pass");
 
-        String values[] = {"Servicio_1","Servicio_2","Servicio_3","Servicio_4","Servicio_5"};
-
+        //Textview Titulo
         TextView title = (TextView) findViewById(R.id.textView_title);
         title.setText( title.getText() + ": " + user);
 
+        //llamar al servicio para que devuelva una lista de servicios de Isis
+        JSONService jsonService = new JSONService(url, user, pass);
+        List<IsisService> isisServiceList = jsonService.findServices();
+
+        //tomar los titulos de los servicios
         final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
+        for (IsisService isisService : isisServiceList) {
+            list.add(isisService.getTitle());
         }
+
+        //llenar la lista
         final StableArrayAdapter adapter = new StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
