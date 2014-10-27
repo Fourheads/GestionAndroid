@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,14 @@ public class ServiceListActivity extends Activity {
         final ListView listview = (ListView) findViewById(R.id.listView_service);
 
         Intent intent = getIntent();
+        String url =  intent.getStringExtra("url");
+        String user =  intent.getStringExtra("user");
+        String pass =  intent.getStringExtra("pass");
+
         String values[] = {"Servicio_1","Servicio_2","Servicio_3","Servicio_4","Servicio_5"};
+
+        TextView title = (TextView) findViewById(R.id.textView_title);
+        title.setText( title.getText() + ": " + user);
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < values.length; ++i) {
