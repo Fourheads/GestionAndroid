@@ -8,5 +8,7 @@
     <string name="user_name">Nombre de Usuario</string>
     <string name="password">Contraseña</string>
     <string name="button_connect">Conectarse</string>
+    <string name="title_activity_service_list">ServiceListActivity</string>
+    <string name="service_list_title">Service List</string>
 
 </resources>

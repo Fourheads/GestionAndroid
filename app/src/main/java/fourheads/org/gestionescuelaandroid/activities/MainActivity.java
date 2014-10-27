@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import fourheads.org.gestionescuelaandroid.R;
 
@@ -26,11 +27,21 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View arg0) {
 
-                button.setText(" x ");
-                //Intent intent = new Intent("android.intent.action.LIST");
-                //String[] valores = {"1","2","3","4","5","6","7","8","9","10"};
-                //intent.putExtra("valores", valores);
-                //startActivity(intent);
+            final EditText editTextUrl = (EditText)findViewById(R.id.editText_server);
+            final EditText editTextUser = (EditText)findViewById(R.id.editText_user_name);
+            final EditText editTextPass = (EditText)findViewById(R.id.editText_password);
+
+            String url = editTextUrl.getText().toString();
+            String user = editTextUser.getText().toString();
+            String pass = editTextPass.getText().toString();
+
+            Intent intent = new Intent("android.intent.action.SERVICE_LIST");
+
+            intent.putExtra("url", url);
+            intent.putExtra("user", user);
+            intent.putExtra("pass", pass);
+
+            startActivity(intent);
             }
         });
     }
