@@ -3,7 +3,9 @@ package fourheads.org.gestionescuelaandroid.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,44 +14,77 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.springframework.http.HttpAuthentication;
+import org.springframework.http.HttpBasicAuthentication;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import fourheads.org.gestionescuelaandroid.R;
 import fourheads.org.gestionescuelaandroid.dom.IsisService;
+import fourheads.org.gestionescuelaandroid.dom.RestLink;
+import fourheads.org.gestionescuelaandroid.dom.RestLinks;
+import fourheads.org.gestionescuelaandroid.dom.Services;
 import fourheads.org.gestionescuelaandroid.services.JSONService;
 
 public class ServiceListActivity extends Activity {
+
+    String url;
+    String user;
+    String pass;
+    Services services;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_list);
 
-        final ListView listview = (ListView) findViewById(R.id.listView_service);
+        ListView listview = (ListView) findViewById(R.id.listView_service);
 
         Intent intent = getIntent();
-        String url =  intent.getStringExtra("url");
-        String user =  intent.getStringExtra("user");
-        String pass =  intent.getStringExtra("pass");
+        url =  intent.getStringExtra("url");
+        user =  intent.getStringExtra("user");
+        pass =  intent.getStringExtra("pass");
 
         //Textview Titulo
         TextView title = (TextView) findViewById(R.id.textView_title);
         title.setText( title.getText() + ": " + user);
 
-        //llamar al servicio para que devuelva una lista de servicios de Isis
-        JSONService jsonService = new JSONService(url, user, pass);
-        List<IsisService> isisServiceList = jsonService.findServices();
+        //llamar al thread que devuelve una lista de servicios de Isis
+        try {
+            services = new FillListOfServicesThread().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        //tomar los titulos de los servicios
+        //JSONService jsonService = new JSONService(url, user, pass);
+        List<IsisService> isisServiceList = null;
         final ArrayList<String> list = new ArrayList<String>();
-        for (IsisService isisService : isisServiceList) {
-            list.add(isisService.getTitle());
+        if (services !=null) {
+            isisServiceList = services.getValue();
+
+            //tomar los titulos de los servicios
+
+            for (IsisService isisService : isisServiceList) {
+                list.add(isisService.getTitle());
+            }
         }
 
         //llenar la lista
-        final StableArrayAdapter adapter = new StableArrayAdapter(this,
+        final StableArrayAdapter adapter = new StableArrayAdapter(getBaseContext(),
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
@@ -59,7 +94,7 @@ public class ServiceListActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0).withEndAction(new Runnable() {
+                view.animate().setDuration(1000).alpha(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         list.remove(item);
@@ -70,6 +105,8 @@ public class ServiceListActivity extends Activity {
             }
 
         });
+
+
     }
 
 
@@ -115,5 +152,72 @@ public class ServiceListActivity extends Activity {
             return true;
         }
 
+    }
+
+    private class FillListOfServicesThread extends AsyncTask<Void, Void, Services> {
+        @Override
+        protected Services doInBackground(Void... params) {
+            try {
+
+
+                //Services services = null;
+                Log.v("ingresando User y Pass", user + " : " + pass);
+                // Set the username and password for creating a Basic Auth request
+                HttpAuthentication authHeader = new HttpBasicAuthentication(user, pass);
+                HttpHeaders requestHeaders = new HttpHeaders();
+                requestHeaders.setAuthorization(authHeader);
+                HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
+
+                Log.v("ingresando URL",url);
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+                // Make the HTTP GET request to the Basic Auth protected URL
+                ResponseEntity<RestLinks> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, RestLinks.class);
+
+                //return response.getBody();
+
+                RestLinks restLinks = response.getBody();
+
+                Log.v("leido", restLinks.getLinks().size()+"");
+
+                //Buscar los servicios
+
+                for (RestLink restlink : restLinks.getLinks()){
+
+                    if (restlink.getRel().equals("urn:org.restfulobjects:rels/services")){
+                        Log.v("Servicios Encontrados en", restlink.getHref());
+
+
+                        // Make the HTTP GET request to the Basic Auth protected URL
+                        ResponseEntity<Services> response2 = restTemplate.exchange(restlink.getHref(), HttpMethod.GET, requestEntity, Services.class);
+
+                        services = response2.getBody();
+
+                        Log.v("leido", services.getValue().size()+"");
+
+                        //Buscar los servicios
+
+                        int arraySize = services.getValue().size();
+                        IsisService[] serviceArray = new IsisService[arraySize];
+                        for (int i=0; i< arraySize;i++){
+                            serviceArray[i] = services.getValue().get(i);
+                            Log.v("Servicios Encontrados", serviceArray[i].getTitle());
+                        }
+
+                    }
+
+
+
+                }
+
+                return services;
+
+            } catch (Exception e) {
+                Log.e("main_activity", e.getMessage(), e);
+            }
+
+            return null;
+        }
     }
 }
