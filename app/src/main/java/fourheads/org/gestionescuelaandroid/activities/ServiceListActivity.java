@@ -72,7 +72,7 @@ public class ServiceListActivity extends Activity {
 
         //JSONService jsonService = new JSONService(url, user, pass);
         List<IsisService> isisServiceList = null;
-        final ArrayList<String> list = new ArrayList<String>();
+        final List<String> list = new ArrayList<String>();
         if (services !=null) {
             isisServiceList = services.getValue();
 
@@ -82,6 +82,23 @@ public class ServiceListActivity extends Activity {
                 list.add(isisService.getTitle());
             }
         }
+
+        ArrayList<String> excluded = new ArrayList<String>();
+        excluded.add("Bulk$ Interaction Context");
+        excluded.add("Bookmark Holder Action Contributions");
+        excluded.add("Class Discovery Service Using Reflections");
+        excluded.add("Clock Service");
+        excluded.add("Query Results Cache");
+        excluded.add("Scratchpad");
+        excluded.add("Bookmark Service Default");
+        excluded.add("Memento Service Default");
+        excluded.add("Xml Snapshot Service Default");
+        excluded.add("Command Context");
+        excluded.add("Domain Object Container Default");
+        excluded.add("Background Service Default");
+        excluded.add("Representation Service For Restful Objects");
+
+        list.removeAll(excluded);
 
         //llenar la lista
         final StableArrayAdapter adapter = new StableArrayAdapter(getBaseContext(),
