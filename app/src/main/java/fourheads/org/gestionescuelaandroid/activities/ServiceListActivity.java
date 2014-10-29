@@ -35,7 +35,7 @@ import fourheads.org.gestionescuelaandroid.dom.IsisService;
 import fourheads.org.gestionescuelaandroid.dom.RestLink;
 import fourheads.org.gestionescuelaandroid.dom.RestLinks;
 import fourheads.org.gestionescuelaandroid.dom.Services;
-import fourheads.org.gestionescuelaandroid.services.JSONService;
+
 
 public class ServiceListActivity extends Activity {
 
