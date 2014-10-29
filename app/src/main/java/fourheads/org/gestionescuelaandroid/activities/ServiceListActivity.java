@@ -105,18 +105,41 @@ public class ServiceListActivity extends Activity {
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
+        //Accion al hacer click en un item
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
+                                    int position, final long id) {
                 final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(1000).alpha(0).withEndAction(new Runnable() {
+                view.animate().setDuration(1).alpha(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
+                        /*
                         list.remove(item);
                         adapter.notifyDataSetChanged();
                         view.setAlpha(1);
+                        */
+
+                        String serviceTitle = list.get((int)id);
+                        Log.v("titulo del servicio", serviceTitle);
+
+                        String serviceUrl = null;
+                        for (IsisService isisService : services.getValue()){
+                            if (isisService.getTitle().equals(serviceTitle)){
+                                serviceUrl = isisService.getHref();
+                            }
+                        }
+                        Log.v("direccion del servicio", serviceUrl);
+
+                        Intent newIntent = new Intent("android.intent.action.ACTION_LIST");
+                        newIntent.putExtra("user", user);
+                        newIntent.putExtra("pass", pass);
+                        newIntent.putExtra("serviceTitle", serviceTitle);
+                        newIntent.putExtra("serviceUrl", serviceUrl);
+
+                        startActivity(newIntent);
+
                     }
                 });
             }

@@ -10,5 +10,7 @@
     <string name="button_connect">Conectarse</string>
     <string name="title_activity_service_list">ServiceListActivity</string>
     <string name="service_list_title">Service List</string>
+    <string name="title_activity_actions_list">ActionsListActivity</string>
+    <string name="actionlist_title">Action List</string>
 
 </resources>

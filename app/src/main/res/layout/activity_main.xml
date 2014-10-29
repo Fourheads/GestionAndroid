@@ -17,8 +17,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText_server"
         android:layout_weight="0.03"
-        android:text="http://mmyco.co.uk:8180/isis-onlinedemo/restful/" />
-
+        android:text="http://192.168.1.52:8080/restful/"
+        />
+        <!--android:text="http://mmyco.co.uk:8180/isis-onlinedemo/restful/"-->
+        <!--android:text="http://192.168.1.52:8080/restful/"-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
