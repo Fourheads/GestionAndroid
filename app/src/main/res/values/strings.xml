@@ -12,5 +12,7 @@
     <string name="service_list_title">Service List</string>
     <string name="title_activity_actions_list">ActionsListActivity</string>
     <string name="actionlist_title">Action List</string>
+    <string name="List_Students">Listar Alumnos</string>
+    <string name="title_activity_students_list">StudentsListActivity</string>
 
 </resources>

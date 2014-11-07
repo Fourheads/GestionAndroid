@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -60,6 +62,24 @@ public class ServiceListActivity extends Activity {
         //Textview Titulo
         TextView title = (TextView) findViewById(R.id.textView_title);
         title.setText( title.getText() + ": " + user);
+
+        //Captura del evento Click del boton
+        final Button button_ListStudents = (Button)findViewById(R.id.button_ListStudents);
+
+        button_ListStudents.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent("android.intent.action.ALUMNO_LIST");
+
+                intent.putExtra("url", url);
+                intent.putExtra("user", user);
+                intent.putExtra("pass", pass);
+
+                startActivity(intent);
+            }
+        });
 
         //llamar al thread que devuelve una lista de servicios de Isis
         try {
