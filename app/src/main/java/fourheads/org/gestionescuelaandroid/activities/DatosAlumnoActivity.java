@@ -61,7 +61,7 @@ public class DatosAlumnoActivity extends Activity {
 
         textViewNombre.setText(alumno.getMembers().getNombre().getValue());
         textViewApellido.setText(alumno.getMembers().getApellido().getValue());
-        
+
     }
 
 

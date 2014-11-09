@@ -18,22 +18,22 @@ public class Alumno {
     // nested class
     public class Members{
 
-        Apellido apellido;
-        Nombre nombre;
+        Dato apellido;
+        Dato nombre;
 
-        public Apellido getApellido() {
+        public Dato getApellido() {
             return apellido;
         }
 
-        public void setApellido(Apellido apellido) {
+        public void setApellido(Dato apellido) {
             this.apellido = apellido;
         }
 
-        public Nombre getNombre() {
+        public Dato getNombre() {
             return nombre;
         }
 
-        public void setNombre(Nombre nombre) {
+        public void setNombre(Dato nombre) {
             this.nombre = nombre;
         }
 
@@ -41,7 +41,8 @@ public class Alumno {
 
 
         // nested classes
-        public class Apellido{
+
+        public class Dato{
             String value;
 
             public String getValue() {
@@ -52,19 +53,6 @@ public class Alumno {
                 this.value = value;
             }
         }
-
-        public class Nombre{
-            String value;
-
-            public String getValue() {
-                return value;
-            }
-
-            public void setValue(String value) {
-                this.value = value;
-            }
-        }
-
 
     }
 }
