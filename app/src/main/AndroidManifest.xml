@@ -40,19 +40,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fourheads.org.gestionescuelaandroid.activities.ActionsListActivity"
-            android:label="@string/title_activity_actions_list" >
+            android:name="fourheads.org.gestionescuelaandroid.activities.AlumnosListActivity"
+            android:label="@string/title_activity_students_list" >
             <intent-filter>
-                <action android:name="android.intent.action.ACTION_LIST" />
+                <action android:name="android.intent.action.ALUMNO_LIST" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="fourheads.org.gestionescuelaandroid.activities.AlumnosListActivity"
-            android:label="@string/title_activity_students_list" >
+            android:name="fourheads.org.gestionescuelaandroid.activities.DatosAlumnoActivity"
+            android:label="@string/title_activity_datos_alumno" >
             <intent-filter>
-                <action android:name="android.intent.action.ALUMNO_LIST" />
+                <action android:name="android.intent.action.DATOS_ALUMNO" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

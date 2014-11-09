@@ -88,7 +88,19 @@ public class AlumnosListActivity extends Activity {
                                     int position, final long id) {
                 final String item = (String) parent.getItemAtPosition(position);
 
-                Log.v("nombre",item);
+                Log.v("nombre",alumnos.getResult().getValue().get(position).getTitle());
+                Log.v("link",alumnos.getResult().getValue().get(position).getHref());
+
+                String urlAlumno = alumnos.getResult().getValue().get(position).getHref();
+
+                Intent newIntent = new Intent("android.intent.action.DATOS_ALUMNO");
+                newIntent.putExtra("user",user);
+                newIntent.putExtra("pass",pass);
+                newIntent.putExtra("url",urlAlumno);
+
+                startActivity(newIntent);
+
+
             }
         });
 

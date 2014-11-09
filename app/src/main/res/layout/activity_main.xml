@@ -48,9 +48,11 @@
         android:text="pass" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="121dp"
         android:layout_height="wrap_content"
         android:text="@string/button_connect"
         android:id="@+id/button_connect"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="#ff2998ba"
+        android:textColor="#ffe7e2e1" />
 </LinearLayout>

@@ -14,5 +14,13 @@
     <string name="actionlist_title">Action List</string>
     <string name="List_Students">Listar Alumnos</string>
     <string name="title_activity_students_list">StudentsListActivity</string>
+    <string name="title_activity_mostrar_alumno">MostrarAlumnoActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_main_activity2">MainActivity2</string>
+    <string name="title_activity_datos_alumno">DatosAlumnoActivity</string>
+    <string name="alumno_nombre_label">Nombre:</string>
+    <string name="apellido_nombre_label">Apellido:</string>
 
 </resources>
