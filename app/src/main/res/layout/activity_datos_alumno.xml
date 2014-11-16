@@ -24,7 +24,7 @@
         android:layout_toEndOf="@+id/textView_alumno_apellido_label"
         android:layout_above="@+id/textView_alumno_apellido_label"
         android:layout_toRightOf="@+id/textView_alumno_apellido_label"
-        android:layout_marginLeft="27dp"
+        android:layout_marginLeft="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -48,6 +48,50 @@
         android:layout_alignTop="@+id/textView_alumno_apellido_label"
         android:layout_toRightOf="@+id/textView_alumno_apellido_label"
         android:layout_marginLeft="27dp"
+        android:layout_alignRight="@+id/textView_alumno_nombre"
+        android:layout_alignEnd="@+id/textView_alumno_nombre" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/alumno_dni_label"
+        android:id="@+id/textView_alumno_dni_label"
+        android:layout_below="@+id/textView_alumno_apellido_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_alumno_dni"
+        android:layout_alignBottom="@+id/textView_alumno_dni_label"
+        android:layout_alignLeft="@+id/textView_alumno_apellido"
+        android:layout_alignStart="@+id/textView_alumno_apellido"
+        android:layout_alignRight="@+id/textView_alumno_apellido"
+        android:layout_alignEnd="@+id/textView_alumno_apellido" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/textView_alumno_fechaNac_label"
+        android:id="@+id/textView_alumno_fechaNac_label"
+        android:layout_below="@+id/textView_alumno_dni_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_alumno_fechaNacimiento"
+        android:layout_alignTop="@+id/textView_alumno_fechaNac_label"
+        android:layout_alignLeft="@+id/textView_alumno_nombre"
+        android:layout_alignStart="@+id/textView_alumno_nombre"
         android:layout_alignRight="@+id/textView_alumno_nombre"
         android:layout_alignEnd="@+id/textView_alumno_nombre" />
 

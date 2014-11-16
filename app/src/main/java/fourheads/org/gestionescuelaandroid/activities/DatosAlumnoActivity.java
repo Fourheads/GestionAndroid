@@ -43,6 +43,8 @@ public class DatosAlumnoActivity extends Activity {
 
         TextView textViewNombre = (TextView) findViewById(R.id.textView_alumno_nombre);
         TextView textViewApellido = (TextView) findViewById(R.id.textView_alumno_apellido);
+        TextView textViewDni = (TextView) findViewById(R.id.textView_alumno_dni);
+        TextView textViewFechaNacimiento = (TextView) findViewById(R.id.textView_alumno_fechaNacimiento);
 
         Intent intent = getIntent();
         url =  intent.getStringExtra("url");
@@ -61,9 +63,20 @@ public class DatosAlumnoActivity extends Activity {
 
         textViewNombre.setText(alumno.getMembers().getNombre().getValue());
         textViewApellido.setText(alumno.getMembers().getApellido().getValue());
+        textViewDni.setText(alumno.getMembers().getDni().getValue());
+        textViewFechaNacimiento.setText(ordenarFecha(alumno.getMembers().getFechaNacimiento().getValue()));
+
 
     }
 
+    private String ordenarFecha(String input){
+
+        String[] fecha = input.split("-");
+        String anio = fecha[0];
+        String mes = fecha[1];
+        String dia = fecha[2];
+        return dia + "/" + mes + "/" + anio;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

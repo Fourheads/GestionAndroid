@@ -18,31 +18,46 @@ public class Alumno {
     // nested class
     public class Members{
 
-        Dato apellido;
-        Dato nombre;
+        DatoString apellido;
+        DatoString nombre;
+        DatoString dni;
+        DatoString fechaNacimiento;
 
-        public Dato getApellido() {
+        public DatoString getApellido() {
             return apellido;
         }
 
-        public void setApellido(Dato apellido) {
+        public void setApellido(DatoString apellido) {
             this.apellido = apellido;
         }
 
-        public Dato getNombre() {
+        public DatoString getNombre() {
             return nombre;
         }
 
-        public void setNombre(Dato nombre) {
+        public void setNombre(DatoString nombre) {
             this.nombre = nombre;
         }
 
+        public DatoString getDni() {
+            return dni;
+        }
 
+        public void setDni(DatoString dni) {
+            this.dni = dni;
+        }
 
+        public DatoString getFechaNacimiento() {
+            return fechaNacimiento;
+        }
+
+        public void setFechaNacimiento(DatoString fechaNacimiento) {
+            this.fechaNacimiento = fechaNacimiento;
+        }
 
         // nested classes
 
-        public class Dato{
+        public class DatoString {
             String value;
 
             public String getValue() {
@@ -54,5 +69,16 @@ public class Alumno {
             }
         }
 
+        public class DatoInt {
+            int value;
+
+            public int getValue() {
+                return value;
+            }
+
+            public void setValue(int value) {
+                this.value = value;
+            }
+        }
     }
 }
