@@ -1,6 +1,7 @@
 package fourheads.org.gestionescuelaandroid.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import fourheads.org.gestionescuelaandroid.R;
+import android.widget.Toast;
 
+import fourheads.org.gestionescuelaandroid.R;
 
 public class MainActivity extends Activity {
 
@@ -19,39 +22,82 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final EditText et_user = (EditText)findViewById(R.id.editText_user);
+        final EditText et_pass = (EditText)findViewById(R.id.editText_pass);
+        final Button button_connect = (Button)findViewById(R.id.button_connect);
+        final CheckBox cb_save = (CheckBox)findViewById(R.id.checkBox_save);
+        final Activity activity = this;
 
-        //Captura del evento Click del boton
-        final Button button = (Button)findViewById(R.id.button_connect);
+        final GestionConfigRepositorio gestionConfigRepositorio = new GestionConfigRepositorio();
+        final GestionConfig config = gestionConfigRepositorio.recuperarConfiguracion(this);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        et_user.setText(config.getUser());
+        et_pass.setText(config.getPass());
+        cb_save.setChecked(config.getSave());
+
+        button_connect.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View view) {
 
-            final EditText editTextUrl = (EditText)findViewById(R.id.editText_server);
-            final EditText editTextUser = (EditText)findViewById(R.id.editText_user_name);
-            final EditText editTextPass = (EditText)findViewById(R.id.editText_password);
+                GestionConfig config = gestionConfigRepositorio.recuperarConfiguracion(activity);
 
-            String url = editTextUrl.getText().toString();
-            String user = editTextUser.getText().toString();
-            String pass = editTextPass.getText().toString();
+                if (et_pass.getText().toString().isEmpty()){
 
-            Intent intent = new Intent("android.intent.action.SERVICE_LIST");
+                    mostrarMensaje("El campo \"pass\" no puede quedar en blanco");
+                    return;
+                }
 
-            intent.putExtra("url", url);
-            intent.putExtra("user", user);
-            intent.putExtra("pass", pass);
+                if (config.getUrlRestful().isEmpty()){
 
-            startActivity(intent);
+                    mostrarMensaje("No ha configurado una URL. Hágalo desde el menu \"Settings\"");
+                    return;
+                }
+
+                config.setUser(et_user.getText().toString());
+
+
+                if (cb_save.isChecked()){
+                    config.setPass(et_pass.getText().toString());
+                    config.setSave(true);
+                } else {
+                    config.setPass("");
+                    config.setSave(false);
+                }
+                Log.v("user",config.getUser());
+                Log.v("pass",config.getPass());
+                Log.v("save",config.getSave().toString());
+                Log.v("url",config.getUrlRestful());
+
+                gestionConfigRepositorio.guardarConfiguracion(activity, config);
+
+                Intent intent = new Intent("android.intent.action.SERVICE_LIST");
+
+                intent.putExtra("url", config.getUrlRestful());
+                intent.putExtra("user", config.getUser());
+                intent.putExtra("pass", config.getPass());
+
+                startActivity(intent);
+
             }
         });
+
+    }
+
+    private void mostrarMensaje(CharSequence text) {
+        Context context = getApplicationContext();
+
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -61,11 +107,18 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent("android.intent.action.SETTINGS");
+            startActivity(intent);
+
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
 
 }
