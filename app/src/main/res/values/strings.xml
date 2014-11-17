@@ -28,5 +28,8 @@
     <string name="cargar_notas">Cargar Calificaciones</string>
     <string name="reportar_evento">Reportar Evento</string>
     <string name="cursos">Cursos</string>
+    <string name="button_alumno_ir_alcurso">Ir al Curso</string>
+    <string name="alumno_ver_direccion">Ver Domicilio</string>
+    <string name="alumno_ver_legajo">Ver Legajo</string>
 
 </resources>

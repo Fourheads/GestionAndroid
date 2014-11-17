@@ -45,6 +45,7 @@ public class DatosAlumnoActivity extends Activity {
         TextView textViewApellido = (TextView) findViewById(R.id.textView_alumno_apellido);
         TextView textViewDni = (TextView) findViewById(R.id.textView_alumno_dni);
         TextView textViewFechaNacimiento = (TextView) findViewById(R.id.textView_alumno_fechaNacimiento);
+        TextView textViewCurso = (TextView) findViewById(R.id.textView_alumno_curso);
 
         Intent intent = getIntent();
         url =  intent.getStringExtra("url");
@@ -65,6 +66,7 @@ public class DatosAlumnoActivity extends Activity {
         textViewApellido.setText(alumno.getMembers().getApellido().getValue());
         textViewDni.setText(alumno.getMembers().getDni().getValue());
         textViewFechaNacimiento.setText(ordenarFecha(alumno.getMembers().getFechaNacimiento().getValue()));
+        textViewCurso.setText(alumno.getMembers().getCurso().getValue().getTitle());
 
 
     }

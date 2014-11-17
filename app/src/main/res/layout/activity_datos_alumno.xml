@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="fourheads.org.gestionescuelaandroid.activities.DatosAlumnoActivity">
+    tools:context="fourheads.org.gestionescuelaandroid.activities.DatosAlumnoActivity"
+    android:background="@color/Fondo">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +15,8 @@
         android:id="@+id/textView_alumno_nombre_label"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/Etiquetas" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +28,8 @@
         android:layout_toRightOf="@+id/textView_alumno_apellido_label"
         android:layout_marginLeft="30dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/TextoUsuario" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +40,8 @@
         android:layout_below="@+id/textView_alumno_nombre_label"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="23dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/Etiquetas" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,10 +50,11 @@
         android:id="@+id/textView_alumno_apellido"
         android:layout_toEndOf="@+id/textView_alumno_apellido_label"
         android:layout_alignTop="@+id/textView_alumno_apellido_label"
-        android:layout_toRightOf="@+id/textView_alumno_apellido_label"
-        android:layout_marginLeft="27dp"
         android:layout_alignRight="@+id/textView_alumno_nombre"
-        android:layout_alignEnd="@+id/textView_alumno_nombre" />
+        android:layout_alignEnd="@+id/textView_alumno_nombre"
+        android:textColor="@color/TextoUsuario"
+        android:layout_alignLeft="@+id/textView_alumno_nombre"
+        android:layout_alignStart="@+id/textView_alumno_nombre" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,7 +65,8 @@
         android:layout_below="@+id/textView_alumno_apellido_label"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/Etiquetas" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,7 +77,8 @@
         android:layout_alignLeft="@+id/textView_alumno_apellido"
         android:layout_alignStart="@+id/textView_alumno_apellido"
         android:layout_alignRight="@+id/textView_alumno_apellido"
-        android:layout_alignEnd="@+id/textView_alumno_apellido" />
+        android:layout_alignEnd="@+id/textView_alumno_apellido"
+        android:textColor="@color/TextoUsuario" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -82,7 +89,8 @@
         android:layout_below="@+id/textView_alumno_dni_label"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="26dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/Etiquetas" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,9 +98,68 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textView_alumno_fechaNacimiento"
         android:layout_alignTop="@+id/textView_alumno_fechaNac_label"
-        android:layout_alignLeft="@+id/textView_alumno_nombre"
-        android:layout_alignStart="@+id/textView_alumno_nombre"
         android:layout_alignRight="@+id/textView_alumno_nombre"
-        android:layout_alignEnd="@+id/textView_alumno_nombre" />
+        android:layout_alignEnd="@+id/textView_alumno_nombre"
+        android:textColor="@color/TextoUsuario"
+        android:layout_alignLeft="@+id/textView_alumno_dni"
+        android:layout_alignStart="@+id/textView_alumno_dni" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Curso:"
+        android:id="@+id/textView_alumno_curso_label"
+        android:layout_below="@+id/textView_alumno_fechaNac_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/Etiquetas" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView_alumno_curso"
+        android:layout_alignTop="@+id/textView_alumno_curso_label"
+        android:layout_alignRight="@+id/textView_alumno_fechaNacimiento"
+        android:layout_alignEnd="@+id/textView_alumno_fechaNacimiento"
+        android:textColor="@color/TextoUsuario"
+        android:maxLines="1"
+        android:layout_alignLeft="@+id/textView_alumno_fechaNacimiento"
+        android:layout_alignStart="@+id/textView_alumno_fechaNacimiento" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_alumno_ir_alcurso"
+        android:id="@+id/button_alumno_irAlCurso"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textView_alumno_curso"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/TextoBoton"
+        android:background="@color/FondoBoton" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/alumno_ver_direccion"
+        android:id="@+id/button_alumno_verDomicilio"
+        android:layout_below="@+id/button_alumno_irAlCurso"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/TextoBoton"
+        android:background="@color/FondoBoton" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/alumno_ver_legajo"
+        android:id="@+id/button"
+        android:layout_below="@+id/button_alumno_verDomicilio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/TextoBoton"
+        android:background="@color/FondoBoton" />
 
 </RelativeLayout>

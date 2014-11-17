@@ -22,6 +22,7 @@ public class Alumno {
         DatoString nombre;
         DatoString dni;
         DatoString fechaNacimiento;
+        DatoCurso curso;
 
         public DatoString getApellido() {
             return apellido;
@@ -55,6 +56,14 @@ public class Alumno {
             this.fechaNacimiento = fechaNacimiento;
         }
 
+        public DatoCurso getCurso() {
+            return curso;
+        }
+
+        public void setCurso(DatoCurso curso) {
+            this.curso = curso;
+        }
+
         // nested classes
 
         public class DatoString {
@@ -69,16 +78,32 @@ public class Alumno {
             }
         }
 
-        public class DatoInt {
-            int value;
+        public class DatoCurso {
 
-            public int getValue() {
+            DatoTitle value;
+
+            public DatoTitle getValue() {
                 return value;
             }
 
-            public void setValue(int value) {
+            public void setValue(DatoTitle value) {
                 this.value = value;
             }
+
+            public class DatoTitle {
+                String title;
+
+                public String getTitle() {
+                    return title;
+                }
+
+                public void setTitle(String title) {
+                    this.title = title;
+                }
+            }
         }
+
+
+
     }
 }
