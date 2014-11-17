@@ -74,8 +74,8 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent("android.intent.action.SERVICE_LIST");
 
                 intent.putExtra("url", config.getUrlRestful());
-                intent.putExtra("user", config.getUser());
-                intent.putExtra("pass", config.getPass());
+                intent.putExtra("user", et_user.getText().toString());
+                intent.putExtra("pass", et_pass.getText().toString());
 
                 startActivity(intent);
 
