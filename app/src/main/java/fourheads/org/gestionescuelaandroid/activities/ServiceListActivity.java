@@ -52,7 +52,7 @@ public class ServiceListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_list);
 
-        ListView listview = (ListView) findViewById(R.id.listView_service);
+        //ListView listview = (ListView) findViewById(R.id.listView_service);
 
         Intent intent = getIntent();
         url =  intent.getStringExtra("url");
@@ -80,7 +80,7 @@ public class ServiceListActivity extends Activity {
                 startActivity(intent);
             }
         });
-
+        /*
         //llamar al thread que devuelve una lista de servicios de Isis
         try {
             services = new FillListOfServicesThread().execute().get();
@@ -135,11 +135,11 @@ public class ServiceListActivity extends Activity {
                 view.animate().setDuration(1).alpha(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        /*
+
                         list.remove(item);
                         adapter.notifyDataSetChanged();
                         view.setAlpha(1);
-                        */
+
 
                         String serviceTitle = list.get((int)id);
                         Log.v("titulo del servicio", serviceTitle);
@@ -165,7 +165,7 @@ public class ServiceListActivity extends Activity {
             }
 
         });
-
+        */
 
     }
 

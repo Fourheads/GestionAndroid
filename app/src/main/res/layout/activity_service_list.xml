@@ -1,26 +1,81 @@
-<LinearLayout
+<RelativeLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#ff000000">
+
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="@string/List_Students"
+        android:id="@+id/button_ListStudents"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textView_title"
+        android:layout_centerHorizontal="true"
+        android:background="#ffa2a2a2" />
+
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tomar_asistencia"
+        android:id="@+id/button_asistencia"
+        android:layout_below="@+id/button_cursos"
+        android:layout_alignLeft="@+id/button_cursos"
+        android:layout_alignStart="@+id/button_cursos"
+        android:layout_marginTop="20dp"
+        android:background="#ffa2a2a2"
+        android:enabled="false" />
+
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cargar_notas"
+        android:id="@+id/button_CargarNotas"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/button_asistencia"
+        android:layout_alignLeft="@+id/button_asistencia"
+        android:layout_alignStart="@+id/button_asistencia"
+        android:background="#ffa2a2a2"
+        android:enabled="false" />
+
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="@string/reportar_evento"
+        android:id="@+id/button_evento"
+        android:layout_below="@+id/button_CargarNotas"
+        android:layout_alignLeft="@+id/button_CargarNotas"
+        android:layout_alignStart="@+id/button_CargarNotas"
+        android:layout_marginTop="20dp"
+        android:background="#ffa2a2a2"
+        android:enabled="false" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/service_list_title"
-        android:id="@+id/textView_title" />
+        android:id="@+id/textView_title"
+        android:layout_toStartOf="@+id/button_evento"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/button_CargarNotas"
+        android:layout_alignEnd="@+id/button_CargarNotas"
+        android:textColor="#ffa2a2a2" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="@string/List_Students"
-        android:id="@+id/button_ListStudents" />
+        android:text="@string/cursos"
+        android:id="@+id/button_cursos"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/button_ListStudents"
+        android:layout_alignLeft="@+id/button_ListStudents"
+        android:layout_alignStart="@+id/button_ListStudents"
+        android:background="#ffa2a2a2"
+        android:enabled="false" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="198dp"
-        android:id="@+id/listView_service"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.86" />
-</LinearLayout>
+</RelativeLayout>

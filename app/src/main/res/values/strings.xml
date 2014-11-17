@@ -9,10 +9,10 @@
     <string name="password">Contraseña</string>
     <string name="button_connect">Conectarse</string>
     <string name="title_activity_service_list">Gestion Escuela</string>
-    <string name="service_list_title">Service List</string>
+    <string name="service_list_title">Usuario</string>
     <string name="title_activity_actions_list">ActionsListActivity</string>
     <string name="actionlist_title">Action List</string>
-    <string name="List_Students">Listado de Alumnos</string>
+    <string name="List_Students">Datos de Alumnos</string>
     <string name="title_activity_students_list">Listado de Alumnos</string>
     <string name="title_activity_mostrar_alumno">MostrarAlumnoActivity</string>
     <string name="title_section1">Section 1</string>
@@ -24,5 +24,9 @@
     <string name="alumno_dni_label">DNI:</string>
     <string name="textView_alumno_fechaNac_label">Nacido:</string>
     <string name="checkBox_savePassword">Guardar Contraseña</string>
+    <string name="tomar_asistencia">Tomar Asistencia</string>
+    <string name="cargar_notas">Cargar Calificaciones</string>
+    <string name="reportar_evento">Reportar Evento</string>
+    <string name="cursos">Cursos</string>
 
 </resources>

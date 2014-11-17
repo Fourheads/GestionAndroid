@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import fourheads.org.gestionescuelaandroid.R;
+import fourheads.org.gestionescuelaandroid.dom.GestionConfig;
+import fourheads.org.gestionescuelaandroid.dom.GestionConfigRepositorio;
 
 public class MainActivity extends Activity {
 

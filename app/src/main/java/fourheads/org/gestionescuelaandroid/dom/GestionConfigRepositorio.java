@@ -1,4 +1,4 @@
-package fourheads.org.gestionescuelaandroid.activities;
+package fourheads.org.gestionescuelaandroid.dom;
 
 import android.app.Activity;
 import android.content.Context;

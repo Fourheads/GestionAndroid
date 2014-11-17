@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import fourheads.org.gestionescuelaandroid.R;
+import fourheads.org.gestionescuelaandroid.dom.GestionConfig;
+import fourheads.org.gestionescuelaandroid.dom.GestionConfigRepositorio;
 
 
 public class SettingsActivity extends Activity {

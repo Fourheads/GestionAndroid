@@ -1,4 +1,4 @@
-package fourheads.org.gestionescuelaandroid.activities;
+package fourheads.org.gestionescuelaandroid.dom;
 
 /**
  * Created by leandro on 16/11/14.
