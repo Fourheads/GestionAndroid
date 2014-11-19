@@ -31,5 +31,6 @@
     <string name="button_alumno_ir_alcurso">Ir al Curso</string>
     <string name="alumno_ver_direccion">Ver Domicilio</string>
     <string name="alumno_ver_legajo">Ver Legajo</string>
+    <string name="title_activity_ayuda_settings">Ayuda Settings</string>
 
 </resources>

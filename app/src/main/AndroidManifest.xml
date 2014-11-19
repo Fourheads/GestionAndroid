@@ -66,6 +66,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="fourheads.org.gestionescuelaandroid.activities.AyudaSettingsActivity"
+            android:label="@string/title_activity_ayuda_settings" >
+            <intent-filter>
+                <action android:name="android.intent.action.AYUDA" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

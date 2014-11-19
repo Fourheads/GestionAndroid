@@ -1,6 +1,7 @@
 package fourheads.org.gestionescuelaandroid.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,16 @@ public class SettingsActivity extends Activity {
                 gestionConfigRepositorio.guardarConfiguracion(activity, config);
 
                 finish();
+            }
+        });
+
+        Button buttonAyuda = (Button)findViewById(R.id.button_ayuda);
+
+        buttonAyuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("android.intent.action.AYUDA");
+                startActivity(intent);
             }
         });
 
