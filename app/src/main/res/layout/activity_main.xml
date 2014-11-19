@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="User"
+        android:text="usuario"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Pass"
+        android:text="contraseña"
         android:id="@+id/textView2"
         android:layout_below="@+id/editText_user"
         android:layout_alignParentLeft="true"
@@ -59,16 +59,16 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save pass"
+        android:text="guardar"
         android:id="@+id/checkBox_save"
         android:checked="false"
 
         android:textColor="@color/Etiquetas"
         android:background="@color/Fondo"
-        android:layout_below="@+id/editText_pass"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_toEndOf="@+id/checkBox_mostrar"
+        android:layout_alignTop="@+id/checkBox_mostrar"
+        android:layout_toRightOf="@+id/checkBox_mostrar"
+        android:layout_marginLeft="34dp" />
 
 
     <Button
@@ -77,10 +77,22 @@
         android:text="Conectar"
         android:id="@+id/button_connect"
         android:background="@color/FondoBoton"
-        android:layout_below="@+id/checkBox_save"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         style="@style/AppTheme"
         android:enabled="true"
-        android:textColor="@color/TextoBoton" />
+        android:textColor="@color/TextoBoton"
+        android:layout_below="@+id/checkBox_save"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mostrar"
+        android:id="@+id/checkBox_mostrar"
+        android:textColor="@color/Etiquetas"
+        android:checked="false"
+        android:layout_below="@+id/editText_pass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
 </RelativeLayout>

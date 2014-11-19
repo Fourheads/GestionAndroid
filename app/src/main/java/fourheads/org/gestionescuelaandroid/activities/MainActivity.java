@@ -5,12 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -52,6 +56,7 @@ public class MainActivity extends Activity {
         final EditText et_pass = (EditText)findViewById(R.id.editText_pass);
         final Button button_connect = (Button)findViewById(R.id.button_connect);
         final CheckBox cb_save = (CheckBox)findViewById(R.id.checkBox_save);
+        final CheckBox cb_mostrar = (CheckBox)findViewById(R.id.checkBox_mostrar);
         final Activity activity = this;
 
         final GestionConfigRepositorio gestionConfigRepositorio = new GestionConfigRepositorio();
@@ -126,6 +131,22 @@ public class MainActivity extends Activity {
                 startActivity(intent);
 
             }
+        });
+
+        cb_mostrar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!b){
+                    et_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                }
+                if (b) {
+                    et_pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                Log.v("estado", b +"");
+
+            }
+
         });
 
     }
