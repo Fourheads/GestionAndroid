@@ -3,6 +3,7 @@ package fourheads.org.gestionescuelaandroid.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,11 +14,34 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.http.HttpException;
+import org.apache.http.client.HttpResponseException;
+import org.springframework.http.HttpAuthentication;
+import org.springframework.http.HttpBasicAuthentication;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.concurrent.ExecutionException;
+
 import fourheads.org.gestionescuelaandroid.R;
 import fourheads.org.gestionescuelaandroid.dom.GestionConfig;
 import fourheads.org.gestionescuelaandroid.dom.GestionConfigRepositorio;
+import fourheads.org.gestionescuelaandroid.dom.IsisService;
+import fourheads.org.gestionescuelaandroid.dom.RestLink;
+import fourheads.org.gestionescuelaandroid.dom.RestLinks;
+import fourheads.org.gestionescuelaandroid.dom.Services;
 
 public class MainActivity extends Activity {
+
+    String url;
+    String pass;
+    String user;
+    String error = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +95,26 @@ public class MainActivity extends Activity {
                 Log.v("save",config.getSave().toString());
                 Log.v("url",config.getUrlRestful());
 
+                url = config.getUrlRestful();
+                user = config.getUser();
+                pass = config.getPass();
+
+                //check connection
+
+                RestLinks restLinks= null;
+                try {
+                    restLinks = new ContactarRestfulThread().execute().get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+                if (restLinks == null){
+                    mostrarMensaje(error);
+                    return;
+                }
+
                 gestionConfigRepositorio.guardarConfiguracion(activity, config);
 
                 Intent intent = new Intent("android.intent.action.SERVICE_LIST");
@@ -121,6 +165,51 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class ContactarRestfulThread extends AsyncTask<Void, Void, RestLinks> {
+        @Override
+        protected RestLinks doInBackground(Void... params) {
+            try {
 
+                //Services services = null;
+                Log.v("ingresando User y Pass", user + " : " + pass);
+                // Set the username and password for creating a Basic Auth request
+                HttpAuthentication authHeader = new HttpBasicAuthentication(user, pass);
+                HttpHeaders requestHeaders = new HttpHeaders();
+                requestHeaders.setAuthorization(authHeader);
+                HttpEntity<?> requestEntity = new HttpEntity<Object>(requestHeaders);
+
+                Log.v("ingresando URL",url);
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+                // Make the HTTP GET request to the Basic Auth protected URL
+
+                ResponseEntity<RestLinks> response = null;
+
+                response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, RestLinks.class);
+
+
+                //return response.getBody();
+
+                RestLinks restLinks = response.getBody();
+
+                Log.v("leido", restLinks.getLinks().size()+"");
+
+
+                return restLinks;
+
+            }  catch (Exception e) {
+                if (e.getMessage().contains("401")){
+                    error = "Nombre de usuario o contraseña incorrectos.";
+                }
+                else {
+                    error = "No se puede acceder al servidor. Verifique la dirección.";
+                }
+                Log.e("Error","Error de conexion");
+
+            }
+            return null;
+        }
+    }
 
 }
