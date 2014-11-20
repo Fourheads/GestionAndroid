@@ -19,14 +19,18 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final EditText editTextUrl = (EditText)findViewById(R.id.editText_settings_url);
+        final EditText editTextServidor = (EditText)findViewById(R.id.editText_settings_servidor);
+        final EditText editTextPuerto = (EditText)findViewById(R.id.editText_settings_puerto);
+        final EditText editTextDirectorio = (EditText)findViewById(R.id.editText_settings_directorio);
         Button buttonSave = (Button)findViewById(R.id.button_guardar);
         final Activity activity = this;
 
         final GestionConfigRepositorio gestionConfigRepositorio = new GestionConfigRepositorio();
         final GestionConfig config = gestionConfigRepositorio.recuperarConfiguracion(activity);
 
-        editTextUrl.setText(config.getUrlRestful());
+        editTextServidor.setText(config.getServidor());
+        editTextPuerto.setText(config.getPuerto());
+        editTextDirectorio.setText(config.getDirectorio());
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
 
@@ -34,7 +38,9 @@ public class SettingsActivity extends Activity {
             public void onClick(View view) {
 
                 final GestionConfig config = gestionConfigRepositorio.recuperarConfiguracion(activity);
-                config.setUrlRestful(editTextUrl.getText().toString());
+                config.setServidor(editTextServidor.getText().toString());
+                config.setPuerto(editTextPuerto.getText().toString());
+                config.setDirectorio(editTextDirectorio.getText().toString());
                 gestionConfigRepositorio.guardarConfiguracion(activity, config);
 
                 finish();

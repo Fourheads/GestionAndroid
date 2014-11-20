@@ -7,7 +7,9 @@ public class GestionConfig {
 
     String user;
     String pass;
-    String urlRestful;
+    String servidor;
+    String puerto;
+    String directorio;
     Boolean save;
 
     public String getUser() {
@@ -26,19 +28,61 @@ public class GestionConfig {
         this.pass = pass;
     }
 
-    public String getUrlRestful() {
-        return urlRestful;
-    }
-
-    public void setUrlRestful(String urlRestful) {
-        this.urlRestful = urlRestful;
-    }
-
     public Boolean getSave() {
         return save;
     }
 
     public void setSave(Boolean save) {
         this.save = save;
+    }
+
+    public String getServidor() {
+        return servidor;
+    }
+
+    public void setServidor(String servidor) {
+        this.servidor = servidor;
+    }
+
+    public String getPuerto() {
+        return puerto;
+    }
+
+    public void setPuerto(String puerto) {
+        this.puerto = puerto;
+    }
+
+    public String getDirectorio() {
+        return directorio;
+    }
+
+    public void setDirectorio(String directorio) {
+        this.directorio = directorio;
+    }
+
+    public String getUrlRestful(){
+
+        String servidor = getServidor();
+        String puerto = getPuerto();
+        String directorio = getDirectorio();
+        if (servidor != null) {
+            if (servidor.isEmpty()) {
+                return "";
+            }
+
+
+            if (puerto.isEmpty()){
+                puerto = "8080";
+            }
+
+            if (directorio.isEmpty()){
+                directorio = "/restful";
+            }
+
+            String url = "http://" + servidor + ":" + puerto + directorio + "/";
+
+            return url;
+        }
+        return "";
     }
 }

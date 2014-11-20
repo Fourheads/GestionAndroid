@@ -30,6 +30,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 import fourheads.org.gestionescuelaandroid.R;
@@ -52,6 +53,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //deleteFile("config.json");
         final EditText et_user = (EditText)findViewById(R.id.editText_user);
         final EditText et_pass = (EditText)findViewById(R.id.editText_pass);
         final Button button_connect = (Button)findViewById(R.id.button_connect);
@@ -62,10 +64,11 @@ public class MainActivity extends Activity {
         final GestionConfigRepositorio gestionConfigRepositorio = new GestionConfigRepositorio();
         final GestionConfig config = gestionConfigRepositorio.recuperarConfiguracion(this);
 
+
+
         et_user.setText(config.getUser());
         et_pass.setText(config.getPass());
         cb_save.setChecked(config.getSave());
-
         button_connect.setOnClickListener(new View.OnClickListener() {
 
             @Override

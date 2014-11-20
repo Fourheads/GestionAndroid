@@ -121,7 +121,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="restful"
+        android:text="/restful"
         android:id="@+id/textView14"
         android:layout_below="@+id/textView13"
         android:layout_alignParentLeft="true"
