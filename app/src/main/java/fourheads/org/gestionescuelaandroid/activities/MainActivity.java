@@ -76,15 +76,21 @@ public class MainActivity extends Activity {
 
                 GestionConfig config = gestionConfigRepositorio.recuperarConfiguracion(activity);
 
+                if (et_user.getText().toString().isEmpty()){
+
+                    mostrarMensaje("El campo \"usuario\" no puede estar en blanco");
+                    return;
+                }
+
                 if (et_pass.getText().toString().isEmpty()){
 
-                    mostrarMensaje("El campo \"pass\" no puede quedar en blanco");
+                    mostrarMensaje("El campo \"contraseña\" no puede estar en blanco");
                     return;
                 }
 
                 if (config.getUrlRestful().isEmpty()){
 
-                    mostrarMensaje("No ha configurado una URL. Hágalo desde el menu \"Settings\"");
+                    mostrarMensaje("No ha configurado la dirección del servidor. Hágalo desde el menu \"Settings\"");
                     return;
                 }
 

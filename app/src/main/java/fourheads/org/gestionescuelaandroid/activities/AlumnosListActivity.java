@@ -123,6 +123,8 @@ public class AlumnosListActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent("android.intent.action.SETTINGS");
+            startActivity(intent);
             return true;
         }
 
