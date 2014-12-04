@@ -32,5 +32,6 @@
     <string name="alumno_ver_direccion">Ver Domicilio</string>
     <string name="alumno_ver_legajo">Ver Legajo</string>
     <string name="title_activity_ayuda_settings">Ayuda Settings</string>
+    <string name="main_usuario">usuario</string>
 
 </resources>
